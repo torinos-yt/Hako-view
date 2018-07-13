@@ -1,0 +1,123 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
+   <PATCH nodename="C:\vvvv\work\hakoview\Hand_closed_timing.v4p" systemname="Hand_closed_timing" filename="C:\vvvv\work\hakoview\Hand_closed_timing.v4p" scrollx="0" scrolly="96">
+   <NODE systemname="AND (Boolean)" nodename="AND (Boolean)" componentmode="Hidden" id="0">
+   <BOUNDS type="Node" left="2096" top="1500" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="FlipFlop (Animation)" nodename="FlipFlop (Animation)" componentmode="Hidden" id="1">
+   <BOUNDS type="Node" left="2084" top="2076" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Set" visible="1">
+   </PIN>
+   <PIN pinname="Reset" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="NAND (Boolean)" filename="..\..\contributions\modules\NAND (Boolean).v4p" nodename="%VVVV%\lib\nodes\native\NAND (Boolean).v4p" componentmode="Hidden" id="2">
+   <BOUNDS type="Node" left="2856" top="1464" width="0" height="0">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1244" top="0" width="3784" height="3664">
+   </BOUNDS>
+   <BOUNDS type="Window" left="5700" top="3828" width="3780" height="3660">
+   </BOUNDS>
+   <PIN pinname="Input1" visible="1">
+   </PIN>
+   <PIN pinname="Input2" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Change (Animation)" nodename="Change (Animation)" componentmode="Hidden" id="3">
+   <BOUNDS type="Node" left="2384" top="2592" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="OnChange" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="NAND (Boolean)" filename="..\..\contributions\modules\NAND (Boolean).v4p" nodename="%VVVV%\lib\nodes\native\NAND (Boolean).v4p" componentmode="Hidden" id="4">
+   <BOUNDS type="Node" left="1500" top="2976" width="0" height="0">
+   </BOUNDS>
+   <BOUNDS type="Box" left="632" top="1144" width="3784" height="3664">
+   </BOUNDS>
+   <BOUNDS type="Window" left="5700" top="3828" width="3780" height="3660">
+   </BOUNDS>
+   <PIN pinname="Input1" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Input2" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Input2 Inverse" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="5" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="2600" top="3012" width="4056" height="240">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2600" top="3012" width="2364" height="672">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="両手とも開いた状態体から閉じた状態に移行する瞬間にBangが起動。S+Hの値を更新">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="1" srcpinname="Output" dstnodeid="4" dstpinname="Input1">
+   </LINK>
+   <LINK srcnodeid="3" srcpinname="OnChange" dstnodeid="4" dstpinname="Input2">
+   </LINK>
+   <NODE id="6" systemname="IOBox (Value Advanced)" componentmode="InABox" nodename="IOBox (Value Advanced)">
+   <PIN pinname="Descriptive Name" slicecount="1" values="Output">
+   </PIN>
+   <BOUNDS type="Box" left="1500" top="3752" width="750" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1500" top="3752" width="750" height="240">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="4" srcpinname="Output" dstnodeid="6" dstpinname="Y Input Value">
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="Output" dstnodeid="1" dstpinname="Set">
+   </LINK>
+   <LINK srcnodeid="2" srcpinname="Output" dstnodeid="1" dstpinname="Reset">
+   </LINK>
+   <NODE id="7" systemname="IOBox (Value Advanced)" componentmode="InABox" nodename="IOBox (Value Advanced)">
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Input1 - Input 1|">
+   </PIN>
+   <BOUNDS type="Box" left="2096" top="500" width="750" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2096" top="500" width="750" height="240">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="7" srcpinname="Y Output Value" dstnodeid="0" dstpinname="Input 1">
+   </LINK>
+   <NODE id="8" systemname="IOBox (Value Advanced)" componentmode="InABox" nodename="IOBox (Value Advanced)">
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Input2 - Input 2|">
+   </PIN>
+   <BOUNDS type="Box" left="2996" top="500" width="750" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2996" top="500" width="750" height="240">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="8" srcpinname="Y Output Value" dstnodeid="0" dstpinname="Input 2">
+   </LINK>
+   <LINK srcnodeid="1" srcpinname="Output" dstnodeid="3" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="7" srcpinname="Y Output Value" dstnodeid="2" dstpinname="Input1">
+   </LINK>
+   <LINK srcnodeid="8" srcpinname="Y Output Value" dstnodeid="2" dstpinname="Input2">
+   </LINK>
+   <BOUNDS type="Window" left="3756" top="5088" width="8148" height="4752">
+   </BOUNDS>
+   <PACK Name="addonpack" Version="35.0.0">
+   </PACK>
+   </PATCH>

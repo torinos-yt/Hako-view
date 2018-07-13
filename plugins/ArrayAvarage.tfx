@@ -1,0 +1,44 @@
+//@author: vux
+//@help: template for texture fx
+//@tags: texture
+//@credits: 
+int roop;
+
+Texture2DArray texture2d : PREVIOUS;
+
+SamplerState linearSampler : IMMUTABLE
+{
+    Filter = MIN_MAG_MIP_LINEAR;
+    AddressU = Clamp;
+    AddressV = Clamp;
+};
+
+struct psInput
+{
+	float4 p : SV_Position;
+	float2 uv : TEXCOORD0;
+};
+
+
+float4 PS(psInput input) : SV_Target
+{
+	uint texCount, dummy;	
+	/*float4 c = float4(0,0,0,0);
+	for(int i = 0; i > roop; i++){
+		c += texture2d.Sample(linearSampler,float3(input.uv, i));
+	}
+	c /= roop;*/
+	float4 c = texture2d.Sample(linearSampler,float3(input.uv,0));
+	return c;
+}
+
+technique10 Process
+{
+	pass P0
+	{
+		SetPixelShader(CompileShader(ps_5_0,PS()));
+	}
+}
+
+
+

@@ -1,0 +1,9 @@
+# .v4p backup files
+*~.xml
+
+# Dynamic plugins .dll
+bin/
+
+#log file
+Save_1212/
+transform_1212.txt

@@ -1,0 +1,47 @@
+//@author: vux
+//@help: template for texture fx
+//@tags: texture
+//@credits: 
+
+Texture2D tex : PREVIOUS;
+Texture2D ava<String uiname = "Average Texture";>;
+Texture2D deb<String uiname = "Debiation Texture";>;
+
+SamplerState linearSampler : IMMUTABLE
+{
+    Filter = MIN_MAG_MIP_LINEAR;
+    AddressU = Clamp;
+    AddressV = Clamp;
+};
+
+struct psInput
+{
+	float4 p : SV_Position;
+	float2 uv : TEXCOORD0;
+};
+
+
+float4 PS(psInput input) : SV_Target
+{
+	float4 b = float4(0,0,0,0);
+	float4 w = float4(1,1,1,1);
+	float4 target = float4(0,0,0,0);
+	float4 c = tex.Sample(linearSampler,input.uv);
+	float4 avarage = ava.Sample(linearSampler,input.uv);
+	float4 debian = deb.Sample(linearSampler,input.uv);
+	float4 sub = avarage - debian;
+	target = lerp(b,w,step(c, avarage - 0.00015));
+	target = lerp(target,b,step(.0008,avarage - c));
+	return target;
+}
+
+technique10 Process
+{
+	pass P0
+	{
+		SetPixelShader(CompileShader(ps_4_0,PS()));
+	}
+}
+
+
+
